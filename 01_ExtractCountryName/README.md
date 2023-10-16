@@ -1,4 +1,4 @@
-<img src="/images/cSharp.png" align="right" height="110"/>
+<img src="/images/cSharp.png" align="right" height="290"/>
 
 # ExtractCountryName
 
