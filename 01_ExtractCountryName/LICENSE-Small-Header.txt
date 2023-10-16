@@ -1,0 +1,11 @@
+//*******************************************************************************************//
+// Copyright © 2023, Patrice Charbonneau                                                     //
+//                   a.k.a. Genetic Wolf                                                     //
+//                   Iid: [80a11b77a52aa9eeed80c9d37dcb7878519289d40beeddb40bb23a60d2711963] //
+//                   All rights reserved.                                                    //
+//                                                                                           //
+// This source code is licensed under the [BSD 3-Clause "New" or "Revised" License]          //
+// found in the LICENSE file in the root directory of this source tree.                      //
+//*******************************************************************************************//
+//**       If you modify this file, you MUST rename it to exclude the version number.      **//
+//*******************************************************************************************//
