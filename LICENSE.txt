@@ -1,6 +1,4 @@
 BSD 3-Clause License
-BSD-3-Clause : [BSD 3-Clause "New" or "Revised" License]
-https://opensource.org/license/bsd-3-clause/
 
 Copyright © 2023, Patrice Charbonneau/a.k.a. Genetic Wolf
 									Iid: [80a11b77a52aa9eeed80c9d37dcb7878519289d40beeddb40bb23a60d2711963]
