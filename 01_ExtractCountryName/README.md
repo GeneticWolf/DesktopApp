@@ -3,8 +3,7 @@
 # ExtractCountryName
 
 An application that extracts the names of countries around the world
-from [https://www.worldometers.info/geography/alphabetical-list-of-countries/]
-to use it as a cSharp enumeration
+from [www.worldometers.info](https://www.worldometers.info/geography/alphabetical-list-of-countries/) to use it as a cSharp enumeration
 
 **Visual**
 
