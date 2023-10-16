@@ -23,4 +23,4 @@ Please see the [LICENSE file](/LICENSE.txt) for more information.
 ## License/InternationalId
 
 The copyright owner has the following international identifier :
-Iid[80a11b77a52aa9eeed80c9d37dcb7878519289d40beeddb40bb23a60d2711963]
+Iid{80a11b77a52aa9eeed80c9d37dcb7878519289d40beeddb40bb23a60d2711963}
