@@ -1,4 +1,4 @@
-<img src="/images/cSharp.png" align="right" height="290"/>
+<img src="/images/cSharp_17.7.5.png" align="right" height="290"/>
 
 # ExtractCountryName
 
@@ -29,7 +29,7 @@ iid{80a11b77a52aa9eeed80c9d37dcb7878519289d40beeddb40bb23a60d2711963}
 ## Links
 
 - [YouTube](https://youtu.be/tdv2En6P58s/)
-- [GitHub](https://github.com/Sigma3Wolf/)
+- [GitHub](https://github.com/Sigma3Wolf/DesktopApp/)
 
 ## Revision
 
