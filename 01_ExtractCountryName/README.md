@@ -29,7 +29,7 @@ iid{80a11b77a52aa9eeed80c9d37dcb7878519289d40beeddb40bb23a60d2711963}
 ## Links
 
 - [YouTube](https://www.youtube.com/@Sigma3Wolf/)
-- [GitHub](https://github.com/Sigma3Wolf/DesktopApp)
+- [GitHub](https://github.com/Sigma3Wolf/)
 
 ## Revision
 
