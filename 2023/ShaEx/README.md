@@ -2,11 +2,11 @@
 
 # ExtractCountryName
 
-An application that calculate Sha512/224 of files
+An application for calculating and storing files Sha512/224 and verify later if the file was modified.
 
 **Visual**
 
-![ExtractCountryName output](images/visual.png)
+![ShaEx output](images/visual.png)
 
 ## License
 
@@ -26,9 +26,8 @@ iid{80a11b77a52aa9eeed80c9d37dcb7878519289d40beeddb40bb23a60d2711963}
 
 ## Links
 
-- [YouTube](https://youtu.be/tdv2En6P58s/)
 - [GitHub](https://github.com/Sigma3Wolf/DesktopApp/)
 
 ## Revision
 
-2023-11-03 v1.00 - Initial release
+2023-11-03 v1.00 - Initial release Sha512, need to implement Sha512/224
