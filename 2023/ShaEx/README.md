@@ -3,6 +3,7 @@
 # ShaEx 512/224
 
 An application for calculating and storing files Sha512/224 and verify later if the file was modified.
+<br /><br /><br />
 
 **Visual**
 
