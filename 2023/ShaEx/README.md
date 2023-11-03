@@ -1,7 +1,5 @@
 <img src="/images/cSharp_17.7.6.png" align="right" height="290"/>
 
-<br />
-<br />
 # ShaEx 512/224
 
 An application for calculating and storing files Sha512/224 and verify later if the file was modified.
