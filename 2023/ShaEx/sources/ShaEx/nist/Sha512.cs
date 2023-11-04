@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Runtime.InteropServices.ComTypes;
+using System.Text;
+using System.Runtime.InteropServices;
 
 // This is an implementation of
 // http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf
@@ -62,6 +65,41 @@ namespace ShaEx {
 			}
 
 			return W;
+		}
+
+		static void FileReadBlock(String pstrFullFileName) {
+			Boolean blnExist = File.Exists(pstrFullFileName);
+			if (blnExist == true) {
+				using (FileStream stream = File.Open(pstrFullFileName, FileMode.Open, FileAccess.Read)) {
+					long lngFileSize = stream.Length;
+					Int32 lngOffSet = 0;
+					Int32 lngMaxBuffer = 1024;
+					using (BinaryReader reader = new BinaryReader(stream, Encoding.UTF8, false)) {
+						
+						Byte[] bytBuffer = new Byte[1024];
+						reader.Read(bytBuffer, lngOffSet, )
+					}
+				}
+
+				using (FileStream fsSource = new FileStream(pstrFullFileName, FileMode.Open, FileAccess.Read)) {
+					// Read the source file into a byte array.
+					byte[] bytes = new byte[fsSource.Length];
+					long numBytesToRead = fsSource.Length;
+					int numBytesRead = 0;
+					while (numBytesToRead > 0) {
+						// Read may return anything from 0 to numBytesToRead.
+						int n = fsSource.Read(bytes, numBytesRead, numBytesToRead);
+
+						// Break when the end of the file is reached.
+						if (n == 0)
+							break;
+
+						numBytesRead += n;
+						numBytesToRead -= n;
+					}
+					numBytesToRead = bytes.Length;
+				}
+			}
 		}
 
 		static byte[] Sha512Algorithm(byte[] plaintext, Int32 plngNumberBits) {
