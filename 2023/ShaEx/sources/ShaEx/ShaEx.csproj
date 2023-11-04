@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dependency.cs" />
+    <Compile Include="nist\Sha512.cs" />
     <Compile Include="PrototypeOmega\vcxAppEx_v3.01.cs" />
     <Compile Include="PrototypeOmega\vcxStringEx_v3.01.cs" />
     <Compile Include="ShaEx.cs">

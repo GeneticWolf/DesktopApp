@@ -36,6 +36,28 @@ namespace ShaEx {
 			this.FormClosing += ShaEx_FormClosing;
 			this.Shown += ShaEx_Shown;
 			this.txtHash.Click += TxtHash_Click;
+
+			String strTest;
+			strTest = Sha512Ex.Sha512("Hello", Sha512Ex.eSha512.L224);
+			if (strTest != "0d075258abfd1f8b81fc0a5207a1aa5cc82eb287720b1f849b862235") {
+				DebugEx.WriteLineEx("512/224: " + strTest);
+			}
+
+			strTest = Sha512Ex.Sha512("Hello", Sha512Ex.eSha512.L256);
+			if (strTest != "7e75b18b88d2cb8be95b05ec611e54e2460408a2dcf858f945686446c9d07aac") {
+				DebugEx.WriteLineEx("512/256: " + strTest);
+			}
+
+			strTest = Sha512Ex.Sha512("Hello", Sha512Ex.eSha512.L384);
+			if (strTest != "3519fe5ad2c596efe3e276a6f351b8fc0b03db861782490d45f7598ebd0ab5fd5520ed102f38c4a5ec834e98668035fc") {
+				DebugEx.WriteLineEx("512/384: " + strTest);
+			}
+
+			strTest = Sha512Ex.Sha512("Hello", Sha512Ex.eSha512.L512);
+			if (strTest != "3615f80c9d293ed7402687f94b22d58e529b8cc7916f8fac7fddf7fbd5af4cf777d3d795a7a00a16bf7e7f3fb9561ee9baae480da9fe7a18769e71886b03f315") {
+				DebugEx.WriteLineEx("512/512: " + strTest);
+			}
+			DebugEx.WriteLineEx("Ok");
 		}
 
 		private void TxtHash_Click(object sender, EventArgs e) {
