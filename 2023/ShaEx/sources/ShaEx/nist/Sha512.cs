@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-using System.Runtime.InteropServices.ComTypes;
 using System.Text;
-using System.Runtime.InteropServices;
 
 // This is an implementation of
 // http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf
@@ -74,11 +72,11 @@ namespace ShaEx {
 					long lngFileSize = stream.Length;
 					Int32 lngOffSet = 0;
 					Int32 lngMaxBuffer = 1024;
-					using (BinaryReader reader = new BinaryReader(stream, Encoding.UTF8, false)) {
+					//using (BinaryReader reader = new BinaryReader(stream, Encoding.UTF8, false)) {
 						
-						Byte[] bytBuffer = new Byte[1024];
-						reader.Read(bytBuffer, lngOffSet, )
-					}
+					//	Byte[] bytBuffer = new Byte[1024];
+					//	reader.Read(bytBuffer, lngOffSet, )
+					//}
 				}
 
 				using (FileStream fsSource = new FileStream(pstrFullFileName, FileMode.Open, FileAccess.Read)) {
@@ -86,17 +84,17 @@ namespace ShaEx {
 					byte[] bytes = new byte[fsSource.Length];
 					long numBytesToRead = fsSource.Length;
 					int numBytesRead = 0;
-					while (numBytesToRead > 0) {
-						// Read may return anything from 0 to numBytesToRead.
-						int n = fsSource.Read(bytes, numBytesRead, numBytesToRead);
+					//while (numBytesToRead > 0) {
+					//	// Read may return anything from 0 to numBytesToRead.
+					//	int n = fsSource.Read(bytes, numBytesRead, numBytesToRead);
 
-						// Break when the end of the file is reached.
-						if (n == 0)
-							break;
+					//	// Break when the end of the file is reached.
+					//	if (n == 0)
+					//		break;
 
-						numBytesRead += n;
-						numBytesToRead -= n;
-					}
+					//	numBytesRead += n;
+					//	numBytesToRead -= n;
+					//}
 					numBytesToRead = bytes.Length;
 				}
 			}

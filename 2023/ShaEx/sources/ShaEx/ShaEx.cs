@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Security.Authentication;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
+using System.Security.Cryptography;
+using System.Security.Authentication;
 using PrototypeOmega;
 
 namespace ShaEx {
@@ -22,13 +17,19 @@ namespace ShaEx {
 
 			//set original caption
 			this.Text = gstrFormCaption;
+			this.Autotest();
 
+			#region converted to ShaEx
 			// Enable drag-and-drop operations and 
 			// add handlers for DragLeave, DragEnter and DragDrop
 			this.picSha.AllowDrop = true;
+			//this.picSha.DragEnter += new DragEventHandler(this.PicSha_DragEnter);
+			//this.picSha.DragLeave += new EventHandler(this.PicSha_DragLeave);
+			//this.picSha.DragDrop += new DragEventHandler(this.PicSha_DragDrop);
 			this.picSha.DragEnter += PicSha_DragEnter;
 			this.picSha.DragLeave += PicSha_DragLeave;
 			this.picSha.DragDrop += PicSha_DragDrop;
+			#endregion
 
 			// Add Mandatory handling
 			this.cmbFilename.SelectedIndexChanged += CmbFilename_SelectedIndexChanged;
@@ -36,28 +37,32 @@ namespace ShaEx {
 			this.FormClosing += ShaEx_FormClosing;
 			this.Shown += ShaEx_Shown;
 			this.txtHash.Click += TxtHash_Click;
+		}
 
-			String strTest;
+		private void Autotest() {
+			String strTest = "";
+
 			strTest = Sha512Ex.Sha512("Hello", Sha512Ex.eSha512.L224);
 			if (strTest != "0d075258abfd1f8b81fc0a5207a1aa5cc82eb287720b1f849b862235") {
-				DebugEx.WriteLineEx("512/224: " + strTest);
+				throw new Exception("512/224: " + strTest);
 			}
 
 			strTest = Sha512Ex.Sha512("Hello", Sha512Ex.eSha512.L256);
 			if (strTest != "7e75b18b88d2cb8be95b05ec611e54e2460408a2dcf858f945686446c9d07aac") {
-				DebugEx.WriteLineEx("512/256: " + strTest);
+				throw new Exception("512/256: " + strTest);
 			}
 
 			strTest = Sha512Ex.Sha512("Hello", Sha512Ex.eSha512.L384);
 			if (strTest != "3519fe5ad2c596efe3e276a6f351b8fc0b03db861782490d45f7598ebd0ab5fd5520ed102f38c4a5ec834e98668035fc") {
-				DebugEx.WriteLineEx("512/384: " + strTest);
+				throw new Exception("512/384: " + strTest);
 			}
 
 			strTest = Sha512Ex.Sha512("Hello", Sha512Ex.eSha512.L512);
 			if (strTest != "3615f80c9d293ed7402687f94b22d58e529b8cc7916f8fac7fddf7fbd5af4cf777d3d795a7a00a16bf7e7f3fb9561ee9baae480da9fe7a18769e71886b03f315") {
-				DebugEx.WriteLineEx("512/512: " + strTest);
+				throw new Exception("512/512: " + strTest);
 			}
-			DebugEx.WriteLineEx("Ok");
+
+			//DebugEx.WriteLineEx("Ok");
 		}
 
 		private void TxtHash_Click(object sender, EventArgs e) {
@@ -77,6 +82,7 @@ namespace ShaEx {
 			}
 		}
 
+		#region converted to ShaEx
 		private void PicSha_DragEnter(object sender, DragEventArgs e) {
 			this.picSha.BackColor = Color.FromArgb(255, 0, 0, 255);
 			//Check if it's a file drop
@@ -92,6 +98,9 @@ namespace ShaEx {
 		private void PicSha_DragLeave(object sender, EventArgs e) {
 			this.picSha.BackColor = Color.FromArgb(255, 64, 224, 208);
 		}
+		#endregion
+
+
 
 		private void PicSha_DragDrop(object sender, DragEventArgs e) {
 			this.cmbFilename.Items.Clear();
@@ -104,13 +113,37 @@ namespace ShaEx {
 					Program._lstFullFileName.Add(_args);
 				}
 			}
-			ProcessFileList();
+			ProcessFileListA();
 		}
 
-		private void ProcessFileList(Boolean pblnRunFromExplorer = false) {
+		private void ProcessFileListA(Boolean pblnRunFromExplorer = false) {
 			if (Program._lstFullFileName.Count > 0) {
 				this.picSha.BackColor = Color.FromArgb(255, 64, 224, 208);
-				this.ProcessFileListEx();
+
+				String strTotalFiles = Program._lstFullFileName.Count.ToString();
+				foreach (String strFullFileName in Program._lstFullFileName) {
+					ShaExFileInfo objComboItem = new ShaExFileInfo();
+					objComboItem.FullFileName = strFullFileName;
+					if (objComboItem.FullFileName != "") {
+						this.cmbFilename.Items.Add(objComboItem);
+					}
+				}
+
+				Int32 lngCount = 0;
+				foreach (ShaExFileInfo objComboItem in this.cmbFilename.Items) {
+					lngCount++;
+					this.Text = gstrFormCaption + " - " + lngCount.ToString() + "/" + strTotalFiles;
+					this.ProcessShaEx(objComboItem);
+
+					//check if an unload request was issued
+					if (this.glngJobState == 2) {
+						//cancel remaining job
+						break;
+					}
+				}
+
+				//return original caption
+				this.Text = gstrFormCaption;
 
 				if (pblnRunFromExplorer == true) {
 					this.glngJobState = 2;
@@ -122,7 +155,7 @@ namespace ShaEx {
 		}
 
 		private void ShaEx_Shown(object sender, EventArgs e) {
-			ProcessFileList(true);
+			ProcessFileListA(true);
 		}
 
 		private void CmbFilename_SelectedIndexChanged(object sender, EventArgs e) {
@@ -221,33 +254,6 @@ namespace ShaEx {
 			} else {
 				WriteShaFile(pstrFilePath, pstrFileName, pstrFileHash);
 			}
-		}
-
-		private void ProcessFileListEx() {
-			String strTotalFiles = Program._lstFullFileName.Count.ToString();
-			foreach (String strFullFileName in Program._lstFullFileName) {
-				ShaExFileInfo objComboItem = new ShaExFileInfo();
-				objComboItem.FullFileName = strFullFileName;
-				if (objComboItem.FullFileName != "") {
-					this.cmbFilename.Items.Add(objComboItem);
-				}
-			}
-
-			Int32 lngCount = 0;
-			foreach (ShaExFileInfo objComboItem in this.cmbFilename.Items) {
-				lngCount++;
-				this.Text = gstrFormCaption + " - " + lngCount.ToString() + "/" + strTotalFiles;
-				this.ProcessShaEx(objComboItem);
-
-				//check if an unload request was issued
-				if (this.glngJobState == 2) {
-					//cancel remaining job
-					break;
-				}
-			}
-
-			//return original caption
-			this.Text = gstrFormCaption;
 		}
 
 		private void ProcessShaEx(ShaExFileInfo objComboItem) {
